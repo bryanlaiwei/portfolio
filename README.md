@@ -2,7 +2,7 @@
 
 A personal portfolio built with Next.js, React, and TypeScript. It presents my experience, projects, technical background, resume, and contact form in a responsive terminal-inspired interface.
 
-**Live site:** [bryan-wei-portfolio.vercel.app](https://bryan-wei-portfolio.vercel.app)
+**Live site:** [bryanwei.vercel.app](https://bryanwei.vercel.app)
 
 ## Add or Update Content
 
