@@ -1,45 +1,52 @@
-# Portfolio Website
+# Bryan Wei — Portfolio
 
-A Next.js portfolio template with a black & pink theme and a terminal-style home page.
+A personal portfolio built with Next.js, React, and TypeScript. It presents my experience, projects, technical background, resume, and contact form in a responsive terminal-inspired interface.
 
-## Pages
+**Live site:** [bryan-wei-portfolio.vercel.app](https://bryan-wei-portfolio.vercel.app)
 
-- **Home** — Interactive terminal with typing animation
-- **About** — Bio, highlights, and interests
-- **Experience** — Timeline of work history
-- **Projects** — Featured and other project cards
-- **Contact** — Contact info and message form
-- **Resume** — Links to `/resume.pdf` (replace with your real resume)
-
-## Getting Started
+## Run Locally
 
 ```bash
-cd portfolio
 npm install
+```
+
+Create `.env.local` from `.env.example` and add your Web3Forms access key:
+
+```env
+NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=your_access_key
+```
+
+Then start the development server:
+
+```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Customizing
+## Add or Update Content
 
-Edit `src/data/portfolio.ts` to update all placeholder content:
+- **Personal details, skills, experience, and projects:** edit `src/data/portfolio.ts`.
+- **Add an experience or project:** add another object to the matching `experiences` or `projects` array and follow the existing object structure.
+- **Page sections and markup:** edit `src/app/page.tsx`.
+- **Layout, responsive behavior, colors, and animations:** edit `src/app/globals.css`.
+- **Navigation and contact form behavior:** edit files in `src/components/`.
+- **Resume and logos:** replace or add files inside `public/`, then update their paths in `src/data/portfolio.ts` if needed.
 
-- Name, title, email, social links
-- About section text
-- Work experience entries
-- Project listings
-- Terminal command output on the home page
+Before publishing a change, verify the production build:
 
-Replace `public/resume.pdf` with your actual resume file.
+```bash
+npm run build
+```
 
-## Tech Stack
+## Publish Updates
 
-- [Next.js 15](https://nextjs.org/) (App Router)
-- [React 19](https://react.dev/)
-- [Tailwind CSS 4](https://tailwindcss.com/)
-- [TypeScript](https://www.typescriptlang.org/)
+Push changes to the `main` branch:
 
-## Deploy
+```bash
+git add .
+git commit -m "Describe your update"
+git push
+```
 
-Deploy easily on [Vercel](https://vercel.com/new) or any platform that supports Next.js.
+Vercel automatically rebuilds and publishes the site after each push to `main` once the GitHub repository is connected to the Vercel project.
