@@ -14,17 +14,11 @@ export default function ContactTerminal() {
   const [errorMessage, setErrorMessage] = useState("");
   const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
 
-  function openEmailClient() {
-    const query = new URLSearchParams({ subject, body: `From: ${senderEmail}\n\n${message}` });
-    window.location.href = `mailto:${siteConfig.email}?${query.toString()}`;
-  }
-
   async function sendEmail(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     if (!accessKey) {
       setSubmissionState("fallback");
-      openEmailClient();
       return;
     }
 
@@ -64,7 +58,7 @@ export default function ContactTerminal() {
     sending: "sending message...",
     success: "message sent successfully ✓",
     error: errorMessage || `delivery failed — email ${siteConfig.email}`,
-    fallback: "opening your email client...",
+    fallback: "contact form is temporarily unavailable",
   }[submissionState];
 
   return (
