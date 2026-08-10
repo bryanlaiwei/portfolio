@@ -1,5 +1,6 @@
 "use client";
 
+import type { MouseEvent } from "react";
 import { useEffect, useRef, useState } from "react";
 
 const sections = [
@@ -15,14 +16,39 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigationTarget = useRef<string | null>(null);
 
-  const handleNavigation = (id: string) => {
-    navigationTarget.current = id;
+  const handleNavigation = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+    event.preventDefault();
+
+    const target = document.getElementById(id);
+    if (!target) return;
+
+    const scrollPadding = Number.parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+    const atPageBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 8;
+    const alreadyAtTarget = Math.abs(target.getBoundingClientRect().top - scrollPadding) <= 4;
+
+    navigationTarget.current = alreadyAtTarget || (id === "contact" && atPageBottom) ? null : id;
     setActiveSection(id);
     setMenuOpen(false);
+    window.history.replaceState(
+      window.history.state,
+      "",
+      `${window.location.pathname}${window.location.search}`,
+    );
+    target.scrollIntoView({ block: "start" });
   };
 
   useEffect(() => {
     let frame = 0;
+
+    if (window.location.hash) {
+      window.history.replaceState(
+        window.history.state,
+        "",
+        `${window.location.pathname}${window.location.search}`,
+      );
+    }
 
     const updateActiveSection = () => {
       cancelAnimationFrame(frame);
@@ -77,7 +103,7 @@ export default function Header() {
               href={`#${section.id}`}
               className={activeSection === section.id ? "active" : ""}
               aria-current={activeSection === section.id ? "location" : undefined}
-              onClick={() => handleNavigation(section.id)}
+              onClick={(event) => handleNavigation(event, section.id)}
             >
               <span className="nav-prompt" aria-hidden="true">./</span>{section.label}
             </a>
@@ -99,7 +125,7 @@ export default function Header() {
       {menuOpen && (
         <nav id="mobile-menu" className="mobile-nav" aria-label="Mobile navigation">
           {sections.map((section) => (
-            <a key={section.id} href={`#${section.id}`} onClick={() => handleNavigation(section.id)}>
+            <a key={section.id} href={`#${section.id}`} onClick={(event) => handleNavigation(event, section.id)}>
               <span>./</span>{section.label}
             </a>
           ))}
