@@ -1,6 +1,6 @@
 # Bryan Wei — Portfolio
 
-A personal portfolio built with Next.js, React, and TypeScript. It presents my experience, projects, technical background, resume, and contact form in a responsive terminal-inspired interface.
+A personal portfolio built with Next.js, React, and TypeScript. It includes my experience, projects, technical background, resume, and a quick contact form.
 
 **Live site:** [bryanwei.vercel.app](https://bryanwei.vercel.app)
 
