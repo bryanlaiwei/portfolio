@@ -42,6 +42,16 @@ export default function Header() {
   useEffect(() => {
     let frame = 0;
 
+    const cancelNavigationLock = () => {
+      navigationTarget.current = null;
+    };
+
+    const handleScrollKey = (event: KeyboardEvent) => {
+      if (["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].includes(event.key)) {
+        cancelNavigationLock();
+      }
+    };
+
     if (window.location.hash) {
       window.history.replaceState(
         window.history.state,
@@ -85,11 +95,19 @@ export default function Header() {
     updateActiveSection();
     window.addEventListener("scroll", updateActiveSection, { passive: true });
     window.addEventListener("resize", updateActiveSection);
+    window.addEventListener("scrollend", cancelNavigationLock);
+    window.addEventListener("wheel", cancelNavigationLock, { passive: true });
+    window.addEventListener("touchstart", cancelNavigationLock, { passive: true });
+    window.addEventListener("keydown", handleScrollKey);
 
     return () => {
       cancelAnimationFrame(frame);
       window.removeEventListener("scroll", updateActiveSection);
       window.removeEventListener("resize", updateActiveSection);
+      window.removeEventListener("scrollend", cancelNavigationLock);
+      window.removeEventListener("wheel", cancelNavigationLock);
+      window.removeEventListener("touchstart", cancelNavigationLock);
+      window.removeEventListener("keydown", handleScrollKey);
     };
   }, []);
 
