@@ -10,7 +10,7 @@ function technologyFileName(category: string) {
 export default function Home() {
   return (
     <div className="portfolio-page">
-      <section id="home" className="hero-section dot-field" aria-labelledby="hero-title">
+      <section id="home" className="hero-section" aria-labelledby="hero-title">
         <div className="hero-inner">
           <div className="hero-copy reveal">
             <p className="page-kicker">{siteConfig.title}</p>
@@ -27,7 +27,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about" className="portfolio-section dot-field" aria-labelledby="about-title">
+      <section id="about" className="portfolio-section" aria-labelledby="about-title">
         <div className="section-shell about-section-layout">
           <header className="section-heading about-copy">
             <h2 id="about-title"><span>./</span>about</h2>
@@ -40,7 +40,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="experience" className="portfolio-section dot-field" aria-labelledby="experience-title">
+      <section id="experience" className="portfolio-section" aria-labelledby="experience-title">
         <div className="section-shell">
           <header className="section-heading compact-heading">
             <h2 id="experience-title"><span>./</span>experience</h2>
@@ -79,7 +79,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="projects" className="portfolio-section dot-field" aria-labelledby="projects-title">
+      <section id="projects" className="portfolio-section" aria-labelledby="projects-title">
         <div className="section-shell">
           <header className="section-heading compact-heading">
             <h2 id="projects-title"><span>./</span>projects</h2>
@@ -95,7 +95,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="contact" className="portfolio-section contact-section dot-field" aria-labelledby="contact-title">
+      <section id="contact" className="portfolio-section contact-section" aria-labelledby="contact-title">
         <div className="section-shell contact-shell">
           <header className="section-heading compact-heading">
             <h2 id="contact-title"><span>./</span>contact</h2>
