@@ -3,12 +3,3 @@
 A personal portfolio built with Next.js, React, and TypeScript. It includes my experience, projects, technical background, resume, and a quick contact form.
 
 **Live site:** [bryanwei.vercel.app](https://bryanwei.vercel.app)
-
-## Add or Update Content
-
-- **Personal details, skills, experience, and projects:** edit `src/data/portfolio.ts`.
-- **Add an experience or project:** add another object to the matching `experiences` or `projects` array and follow the existing object structure.
-- **Page sections and markup:** edit `src/app/page.tsx`.
-- **Layout, responsive behavior, colors, and animations:** edit `src/app/globals.css`.
-- **Navigation and contact form behavior:** edit files in `src/components/`.
-- **Resume and logos:** replace or add files inside `public/`, then update their paths in `src/data/portfolio.ts` if needed.
