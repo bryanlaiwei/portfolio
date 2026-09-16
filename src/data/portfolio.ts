@@ -40,7 +40,7 @@ export type Experience = {
 
 export const experiences: Experience[] = [
   {
-    company: "Workplace Safety and Insurance Board (WSIB)",
+    company: "Workplace Safety and Insurance Board",
     role: "Full Stack Developer",
     period: "Sep 2026 - Present",
     highlights: [
