@@ -61,7 +61,7 @@ export const experiences: Experience[] = [
       "Developed a token usage tracking feature for 8+ agents, mapping agent-specific per API call and session level usage into shared TypeScript schemas, with CLI sync and persistence in Convex and Tinybird, achieving 99% accuracy",
       "Designed a provider-neutral engine to capture cloud-agent sessions across polling, webhook, and streaming interfaces, with concurrent job processing and idempotent, retry-safe persistence",
     ],
-    tech: ["TypeScript", "SQLite", "Convex", "Tinybird", "Bun"],
+    tech: ["TypeScript", "React", "Bun", "SQLite", "Convex", "Tinybird", "Distributed Systems", "CI/CD"],
     logo: "/logos/traces.png",
     logoAlt: "Traces logo",
   },
