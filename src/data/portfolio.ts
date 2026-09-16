@@ -79,9 +79,9 @@ export const experiences: Experience[] = [
       "Supported IT systems for 450+ staff and developed PowerShell automation for post-patch server and virtual machine restart workflows.",
     ],
     tech: ["PowerShell", "Windows Server", "Virtual Machines", "IT Support"],
-    logo: "/logos/ontario-wordmark.jpg",
+    logo: "/logos/ontario-symbol.jpg",
     logoAlt: "Ministry of the Attorney General logo",
-    logoFraming: { scale: 1.4, position: "50% 50%" },
+    logoFraming: { scale: 1.5, position: "50% 50%" },
   },
 ];
 
