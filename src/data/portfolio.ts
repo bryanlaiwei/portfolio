@@ -47,7 +47,7 @@ export const experiences: Experience[] = [
       "Working in the Innovation Lab, with more details to come as I settle into the role.",
     ],
     tech: [],
-    logo: null,
+    logo: "/logos/wsib.jpg",
     logoAlt: "Workplace Safety and Insurance Board logo",
   },
   {
@@ -62,7 +62,7 @@ export const experiences: Experience[] = [
       "Designed a provider-neutral engine to capture cloud-agent sessions across polling, webhook, and streaming interfaces, with concurrent job processing and idempotent, retry-safe persistence",
     ],
     tech: ["TypeScript", "React", "Bun", "SQLite", "Convex", "Tinybird", "Distributed Systems", "CI/CD"],
-    logo: "/logos/traces.png",
+    logo: "/logos/traces.jpg",
     logoAlt: "Traces logo",
   },
   {
@@ -73,7 +73,7 @@ export const experiences: Experience[] = [
       "Supported IT systems for 450+ staff and developed PowerShell automation for post-patch server and virtual machine restart workflows.",
     ],
     tech: ["PowerShell", "Windows Server", "Virtual Machines", "IT Support"],
-    logo: "/logos/ontario.svg",
+    logo: "/logos/attorney-general.jpg",
     logoAlt: "Ministry of the Attorney General logo",
   },
 ];

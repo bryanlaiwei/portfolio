@@ -51,7 +51,7 @@ export default function Home() {
               <article className="experience-entry" key={experience.company}>
                 <div className="experience-logo terminal-window">
                     {experience.logo ? (
-                      <Image src={experience.logo} alt={experience.logoAlt} width={48} height={48} />
+                      <Image src={experience.logo} alt={experience.logoAlt} fill sizes="48px" />
                     ) : (
                       <span aria-hidden="true">{experience.company.slice(0, 2).toUpperCase()}</span>
                     )}
