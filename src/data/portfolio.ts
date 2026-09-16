@@ -36,6 +36,7 @@ export type Experience = {
   tech: string[];
   logo: string | null;
   logoAlt: string;
+  logoScale?: number;
 };
 
 export const experiences: Experience[] = [
@@ -75,6 +76,7 @@ export const experiences: Experience[] = [
     tech: ["PowerShell", "Windows Server", "Virtual Machines", "IT Support"],
     logo: "/logos/attorney-general.jpg",
     logoAlt: "Ministry of the Attorney General logo",
+    logoScale: 1.25,
   },
 ];
 
