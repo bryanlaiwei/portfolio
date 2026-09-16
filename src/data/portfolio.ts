@@ -36,19 +36,24 @@ export type Experience = {
   tech: string[];
   logo: string | null;
   logoAlt: string;
+  logoFraming: {
+    scale: number;
+    position: string;
+  };
 };
 
 export const experiences: Experience[] = [
   {
-    company: "Workplace Safety and Insurance Board (WSIB)",
+    company: "Workplace Safety and Insurance Board",
     role: "Full Stack Developer",
     period: "Sep 2026 - Present",
     highlights: [
       "Working in the Innovation Lab, with more details to come as I settle into the role.",
     ],
     tech: [],
-    logo: null,
+    logo: "/logos/wsib.jpg",
     logoAlt: "Workplace Safety and Insurance Board logo",
+    logoFraming: { scale: 1, position: "50% 50%" },
   },
   {
     company: "Traces",
@@ -62,8 +67,9 @@ export const experiences: Experience[] = [
       "Designed a provider-neutral engine to capture cloud-agent sessions across polling, webhook, and streaming interfaces, with concurrent job processing and idempotent, retry-safe persistence",
     ],
     tech: ["TypeScript", "React", "Bun", "SQLite", "Convex", "Tinybird", "Distributed Systems", "CI/CD"],
-    logo: "/logos/traces.png",
+    logo: "/logos/traces.jpg",
     logoAlt: "Traces logo",
+    logoFraming: { scale: 1, position: "50% 50%" },
   },
   {
     company: "Ministry of the Attorney General",
@@ -73,8 +79,9 @@ export const experiences: Experience[] = [
       "Supported IT systems for 450+ staff and developed PowerShell automation for post-patch server and virtual machine restart workflows.",
     ],
     tech: ["PowerShell", "Windows Server", "Virtual Machines", "IT Support"],
-    logo: "/logos/ontario.svg",
+    logo: "/logos/ontario-symbol.jpg",
     logoAlt: "Ministry of the Attorney General logo",
+    logoFraming: { scale: 1.5, position: "50% 50%" },
   },
 ];
 
