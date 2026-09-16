@@ -36,6 +36,10 @@ export type Experience = {
   tech: string[];
   logo: string | null;
   logoAlt: string;
+  logoFraming: {
+    scale: number;
+    position: string;
+  };
 };
 
 export const experiences: Experience[] = [
@@ -49,6 +53,7 @@ export const experiences: Experience[] = [
     tech: [],
     logo: "/logos/wsib.jpg",
     logoAlt: "Workplace Safety and Insurance Board logo",
+    logoFraming: { scale: 1, position: "50% 50%" },
   },
   {
     company: "Traces",
@@ -64,6 +69,7 @@ export const experiences: Experience[] = [
     tech: ["TypeScript", "React", "Bun", "SQLite", "Convex", "Tinybird", "Distributed Systems", "CI/CD"],
     logo: "/logos/traces.jpg",
     logoAlt: "Traces logo",
+    logoFraming: { scale: 1, position: "50% 50%" },
   },
   {
     company: "Ministry of the Attorney General",
@@ -75,6 +81,7 @@ export const experiences: Experience[] = [
     tech: ["PowerShell", "Windows Server", "Virtual Machines", "IT Support"],
     logo: "/logos/ontario-wordmark.jpg",
     logoAlt: "Ministry of the Attorney General logo",
+    logoFraming: { scale: 1.4, position: "50% 50%" },
   },
 ];
 

@@ -51,7 +51,16 @@ export default function Home() {
               <article className="experience-entry" key={experience.company}>
                 <div className="experience-logo terminal-window">
                     {experience.logo ? (
-                      <Image src={experience.logo} alt={experience.logoAlt} fill sizes="48px" />
+                      <Image
+                        src={experience.logo}
+                        alt={experience.logoAlt}
+                        fill
+                        sizes={`${Math.ceil(48 * experience.logoFraming.scale)}px`}
+                        style={{
+                          objectPosition: experience.logoFraming.position,
+                          transform: `scale(${experience.logoFraming.scale})`,
+                        }}
+                      />
                     ) : (
                       <span aria-hidden="true">{experience.company.slice(0, 2).toUpperCase()}</span>
                     )}
