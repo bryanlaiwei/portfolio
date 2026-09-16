@@ -40,15 +40,26 @@ export type Experience = {
 
 export const experiences: Experience[] = [
   {
+    company: "Workplace Safety and Insurance Board (WSIB)",
+    role: "Full Stack Developer",
+    period: "Sep 2026 - Present",
+    highlights: [
+      "Working in the Innovation Lab, with more details to come as I settle into the role.",
+    ],
+    tech: [],
+    logo: null,
+    logoAlt: "Workplace Safety and Insurance Board logo",
+  },
+  {
     company: "Traces",
     role: "Software Developer",
     period: "May 2026 - Aug 2026",
     highlights: [
-      "Contributed to Traces, a developer platform for capturing, sharing, and continuing coding sessions across different coding agents and teams",
+      "Contributed to Traces, a developer platform used by 100+ organizations for capturing, sharing, and continuing coding sessions across different coding agents and teams",
       "Built and maintained data-ingestion adapters for 14+ coding agents, including local session discovery, content parsing, and schema normalization across JSONL files, SQLite DBs, and cloud-backed session stores",
-      "Built a session-lineage pipeline for 8+ agents to infer parent-subagent relationships from native session stores and preserve lineage across local indexing, API surfaces, remote sync, and Convex storage",
-      "Developed token usage tracking for 8+ agents, extracting agent-specific usage into shared TypeScript schemas, with CLI persistence, remote sync, and storage in Convex and Tinybird",
-      "Designed a cross-platform path-resolution module for macOS, Windows, and Linux, standardizing agent storage discovery across OS-specific filesystem conventions",
+      "Built a subagent discovery pipeline with 97% accuracy for 8+ agents to infer subagent relationships from native session stores and preserve lineage across local indexing, API surfaces, remote sync, and Convex storage",
+      "Developed a token usage tracking feature for 8+ agents, mapping agent-specific per API call and session level usage into shared TypeScript schemas, with CLI sync and persistence in Convex and Tinybird, achieving 99% accuracy",
+      "Designed a provider-neutral engine to capture cloud-agent sessions across polling, webhook, and streaming interfaces, with concurrent job processing and idempotent, retry-safe persistence",
     ],
     tech: ["TypeScript", "SQLite", "Convex", "Tinybird", "Bun"],
     logo: "/logos/traces.png",
