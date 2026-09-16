@@ -36,7 +36,6 @@ export type Experience = {
   tech: string[];
   logo: string | null;
   logoAlt: string;
-  logoScale?: number;
 };
 
 export const experiences: Experience[] = [
@@ -74,9 +73,8 @@ export const experiences: Experience[] = [
       "Supported IT systems for 450+ staff and developed PowerShell automation for post-patch server and virtual machine restart workflows.",
     ],
     tech: ["PowerShell", "Windows Server", "Virtual Machines", "IT Support"],
-    logo: "/logos/attorney-general.jpg",
+    logo: "/logos/ontario-wordmark.jpg",
     logoAlt: "Ministry of the Attorney General logo",
-    logoScale: 1.25,
   },
 ];
 
