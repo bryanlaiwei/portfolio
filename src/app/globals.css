@@ -100,6 +100,10 @@ data { font-variant-numeric: tabular-nums; font-weight: 500; color: var(--text);
     inset 0 18px 40px -28px var(--glass-band-top),
     inset 0 -18px 40px -28px var(--glass-band-bot);
 }
+/* Glass that only ever sits on the flat page ground (stack pills, project cards, the contact panel) skips the backdrop
+   blur: blurring a flat colour gives the same flat colour, so nothing changes on screen, but WebKit (Safari, and every
+   browser on iOS) re-blurs each layer when the theme flips, and the 54 moving stack pills made the switch stutter. */
+.glass.pill::after, .glass.card::after, .glass.contact-panel::after { -webkit-backdrop-filter: none; backdrop-filter: none; }
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .glass::after, .glass.panel::after { background: var(--glass-solid); } }
 
 /* ---------- nav pill ---------- */
