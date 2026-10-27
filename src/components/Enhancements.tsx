@@ -285,12 +285,25 @@ export default function Enhancements() {
     });
 
     // ----- experience detail dialogs -----
+    // a body taller than the screen scrolls inside the dialog; mark which edges have more content so they fade
+    const markScroll = (body: HTMLElement) => {
+      const toggle = (name: string, on: boolean) => (on ? body.setAttribute(name, "") : body.removeAttribute(name));
+      toggle("data-more-above", body.scrollTop > 2);
+      toggle("data-more-below", body.scrollHeight - body.clientHeight - body.scrollTop > 2);
+    };
+    $$(".detail-body").forEach((body) => body.addEventListener("scroll", () => markScroll(body), { passive: true, signal }));
+    addEventListener("resize", () => $$(".detail-body").forEach(markScroll), { signal });
     $$("[data-detail]").forEach((btn) =>
       btn.addEventListener(
         "click",
         () => {
           const d = document.getElementById(btn.dataset.detail ?? "") as HTMLDialogElement | null;
           if (d?.showModal) d.showModal();
+          const body = d && $(".detail-body", d);
+          if (body) {
+            body.scrollTop = 0;
+            markScroll(body);
+          }
         },
         { signal },
       ),

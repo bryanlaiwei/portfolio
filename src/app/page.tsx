@@ -316,20 +316,22 @@ function ExperienceDialogs() {
                 <CloseIcon />
               </button>
             </div>
-            <ul className="bullets">
-              {x.highlights.map((h) => (
-                <li key={h}>{withFigures(h)}</li>
-              ))}
-            </ul>
-            {x.tech.length > 0 && (
-              <ul className="tags">
-                {x.tech.map((t) => (
-                  <li key={t} className="tag">
-                    {t}
-                  </li>
+            <div className="detail-body">
+              <ul className="bullets">
+                {x.highlights.map((h) => (
+                  <li key={h}>{withFigures(h)}</li>
                 ))}
               </ul>
-            )}
+              {x.tech.length > 0 && (
+                <ul className="tags">
+                  {x.tech.map((t) => (
+                    <li key={t} className="tag">
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           </div>
         </dialog>
       ))}
