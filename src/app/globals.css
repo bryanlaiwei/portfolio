@@ -33,7 +33,7 @@
     --glass-band-top: rgba(255, 255, 255, 0.8); --glass-band-bot: rgba(0, 0, 0, 0.12);
     --rim-a: rgba(255, 255, 255, 0.95); --rim-b: rgba(255, 255, 255, 0.35); --rim-c: rgba(0, 0, 0, 0.04); --rim-d: rgba(0, 0, 0, 0.1);
     --glass-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.22), 0 1px 2px rgba(0, 0, 0, 0.06);
-    --hero-top: #4a8ea3; --hero-fade: 72px;
+    --hero-top: #4a8ea3; --hero-fade: 180px;
     --poster-a: #ffffff; --poster-b: #e9e6e2; --poster-grid: rgba(29, 29, 31, 0.06); --poster-ink: #1d1d1f;
   --sd-a: #fff3ea; --sd-b: #f6d9c9; --ct-a: #ffffff; --ct-b: #e3e3e8;
     --scrim: rgba(245, 245, 247, 0.84); --scrim-side: rgba(245, 245, 247, 0.22); --scrim-start: 50%; --scrim-full: 82%; --mask-a: 60%; --mask-b: 72%; --mask-c: 84%; --mask-d: 94%; --photo-filter: saturate(1.08) contrast(1.04); --on-photo-muted: rgba(29, 29, 31, 0.72);
@@ -49,7 +49,7 @@
   --glass-band-top: rgba(255, 255, 255, 0.8); --glass-band-bot: rgba(0, 0, 0, 0.12);
   --rim-a: rgba(255, 255, 255, 0.95); --rim-b: rgba(255, 255, 255, 0.35); --rim-c: rgba(0, 0, 0, 0.04); --rim-d: rgba(0, 0, 0, 0.1);
   --glass-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.22), 0 1px 2px rgba(0, 0, 0, 0.06);
-  --hero-top: #4a8ea3; --hero-fade: 72px;
+  --hero-top: #4a8ea3; --hero-fade: 180px;
   --poster-a: #ffffff; --poster-b: #e9e6e2; --poster-grid: rgba(29, 29, 31, 0.06); --poster-ink: #1d1d1f;
   --sd-a: #fff3ea; --sd-b: #f6d9c9; --ct-a: #ffffff; --ct-b: #e3e3e8;
   --scrim: rgba(245, 245, 247, 0.84); --scrim-side: rgba(245, 245, 247, 0.22); --scrim-start: 50%; --scrim-full: 82%; --mask-a: 60%; --mask-b: 72%; --mask-c: 84%; --mask-d: 94%; --photo-filter: saturate(1.08) contrast(1.04); --on-photo-muted: rgba(29, 29, 31, 0.72);
@@ -147,7 +147,7 @@ section.container { position: relative; z-index: 1; }
 /* iOS Safari paints its status bar in one flat colour (--hero-top, via the body): black in dark, the sky's blue in light.
    On iOS the photo's top edge melts into that colour (over --hero-fade) so the bar reads as part of the picture. */
 @supports (-webkit-touch-callout: none) {
-  .scene::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: var(--hero-fade); background: linear-gradient(180deg, var(--hero-top), transparent); }
+  .scene::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: var(--hero-fade); background: linear-gradient(180deg, var(--hero-top) 0%, color-mix(in srgb, var(--hero-top) 90%, transparent) 15%, color-mix(in srgb, var(--hero-top) 72%, transparent) 30%, color-mix(in srgb, var(--hero-top) 50%, transparent) 45%, color-mix(in srgb, var(--hero-top) 28%, transparent) 60%, color-mix(in srgb, var(--hero-top) 12%, transparent) 75%, color-mix(in srgb, var(--hero-top) 3%, transparent) 90%, transparent 100%); }
 }
 .hero .container { position: relative; z-index: 1; width: 100%; }
 .copy-hero { position: relative; isolation: isolate; max-width: 800px; display: grid; gap: 14px; text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
