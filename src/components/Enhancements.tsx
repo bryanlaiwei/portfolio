@@ -16,6 +16,7 @@ export default function Enhancements() {
     const intervals: number[] = [];
     const root = document.documentElement;
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const touchWebKit = typeof CSS !== "undefined" && CSS.supports("-webkit-touch-callout", "none");
     const canHover = matchMedia("(hover: hover)").matches;
     const $ = <T extends Element = HTMLElement>(s: string, el: ParentNode = document) => el.querySelector<T>(s);
     const $$ = <T extends Element = HTMLElement>(s: string, el: ParentNode = document) => [...el.querySelectorAll<T>(s)];
@@ -84,7 +85,10 @@ export default function Enhancements() {
             } catch {}
             setTheme(next);
           };
-          if (!document.startViewTransition || reduced) {
+          // iOS and iPadOS browsers (all WebKit) draw the page under the status bar and the bottom toolbar, but a view
+          // transition only animates the area between them, so both bars turn into flat colour for the whole reveal.
+          // There the theme switches at once instead, with the hero photos crossfading as usual.
+          if (!document.startViewTransition || reduced || touchWebKit) {
             apply();
             return;
           }
