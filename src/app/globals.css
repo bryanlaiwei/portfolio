@@ -67,8 +67,10 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 ::selection { background: var(--accent); color: var(--accent-ink); }
 svg { stroke-width: 2; }
 data { font-variant-numeric: tabular-nums; font-weight: 500; color: var(--text); }
-::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
-::view-transition-new(root) { z-index: 1; }
+/* theme switch: a soft crossfade of the whole page (desktop, via a view transition) or a veil that rises and falls in
+   the new theme's ground colour (iOS, iPadOS, browsers without view transitions); see Enhancements.tsx */
+::view-transition-group(root), ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 450ms; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+.theme-veil { position: fixed; left: 0; right: 0; top: -120px; bottom: -120px; z-index: 2147483647; pointer-events: none; opacity: 0; }
 
 /* ---------- the material ---------- */
 .glass { position: relative; isolation: isolate; border-radius: 999px; }
