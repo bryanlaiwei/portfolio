@@ -19,9 +19,11 @@ export const viewport: Viewport = {
 
 // Runs before the first paint so the page never flashes the wrong theme. Order: a toggle choice made earlier in
 // this tab, then the system light/dark setting, then (only if the browser cannot report one) the clock,
-// 06:00-18:00 light. src/components/Enhancements.tsx keeps it in sync afterwards.
+// 06:00-18:00 light. It also marks the page as sitting on the hero, which tints Safari's status bar to match the
+// photo. src/components/Enhancements.tsx keeps both in sync afterwards.
 const themeScript = `(function () {
   var d = document.documentElement, o = null;
+  d.dataset.atHero = "";
   try { o = sessionStorage.getItem("theme"); } catch (e) {}
   if (o === "dark" || o === "light") { d.dataset.theme = o; return; }
   var mm = window.matchMedia, dark = mm && matchMedia("(prefers-color-scheme: dark)"), light = mm && matchMedia("(prefers-color-scheme: light)");

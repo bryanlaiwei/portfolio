@@ -10,6 +10,7 @@
   --glass-band-top: rgba(255, 255, 255, 0.3); --glass-band-bot: rgba(0, 0, 0, 0.4);
   --rim-a: rgba(255, 255, 255, 0.6); --rim-b: rgba(255, 255, 255, 0.1); --rim-c: rgba(255, 255, 255, 0.04); --rim-d: rgba(255, 255, 255, 0.3);
   --glass-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.55), 0 1px 2px rgba(0, 0, 0, 0.3);
+  --hero-top: #2e2d2f;
   --poster-a: #2a2622; --poster-b: #161412; --poster-grid: rgba(255, 255, 255, 0.07); --poster-ink: #f5f5f7;
   --sd-a: #4a1a14; --sd-b: #22100c; --ct-a: #3a3a3c; --ct-b: #1c1c1e;
   --scrim: rgba(0, 0, 0, 0.66); --scrim-side: rgba(0, 0, 0, 0.5); --scrim-start: 30%; --scrim-full: 68%; --mask-a: 52%; --mask-b: 64%; --mask-c: 78%; --mask-d: 90%; --photo-filter: none; --on-photo-muted: rgba(245, 245, 247, 0.78);
@@ -32,6 +33,7 @@
     --glass-band-top: rgba(255, 255, 255, 0.8); --glass-band-bot: rgba(0, 0, 0, 0.12);
     --rim-a: rgba(255, 255, 255, 0.95); --rim-b: rgba(255, 255, 255, 0.35); --rim-c: rgba(0, 0, 0, 0.04); --rim-d: rgba(0, 0, 0, 0.1);
     --glass-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.22), 0 1px 2px rgba(0, 0, 0, 0.06);
+    --hero-top: #4a8ea3;
     --poster-a: #ffffff; --poster-b: #e9e6e2; --poster-grid: rgba(29, 29, 31, 0.06); --poster-ink: #1d1d1f;
   --sd-a: #fff3ea; --sd-b: #f6d9c9; --ct-a: #ffffff; --ct-b: #e3e3e8;
     --scrim: rgba(245, 245, 247, 0.84); --scrim-side: rgba(245, 245, 247, 0.22); --scrim-start: 50%; --scrim-full: 82%; --mask-a: 60%; --mask-b: 72%; --mask-c: 84%; --mask-d: 94%; --photo-filter: saturate(1.08) contrast(1.04); --on-photo-muted: rgba(29, 29, 31, 0.72);
@@ -47,6 +49,7 @@
   --glass-band-top: rgba(255, 255, 255, 0.8); --glass-band-bot: rgba(0, 0, 0, 0.12);
   --rim-a: rgba(255, 255, 255, 0.95); --rim-b: rgba(255, 255, 255, 0.35); --rim-c: rgba(0, 0, 0, 0.04); --rim-d: rgba(0, 0, 0, 0.1);
   --glass-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.22), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --hero-top: #4a8ea3;
   --poster-a: #ffffff; --poster-b: #e9e6e2; --poster-grid: rgba(29, 29, 31, 0.06); --poster-ink: #1d1d1f;
   --sd-a: #fff3ea; --sd-b: #f6d9c9; --ct-a: #ffffff; --ct-b: #e3e3e8;
   --scrim: rgba(245, 245, 247, 0.84); --scrim-side: rgba(245, 245, 247, 0.22); --scrim-start: 50%; --scrim-full: 82%; --mask-a: 60%; --mask-b: 72%; --mask-c: 84%; --mask-d: 94%; --photo-filter: saturate(1.08) contrast(1.04); --on-photo-muted: rgba(29, 29, 31, 0.72);
@@ -55,6 +58,7 @@
 
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html { scroll-behavior: smooth; }
+html[data-at-hero] body { background: var(--hero-top); }
 body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--font); font-size: 16px; line-height: 1.5; overflow-x: clip; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; padding-bottom: env(safe-area-inset-bottom, 0px); }
 a { color: inherit; }
 img { max-width: 100%; }
@@ -120,7 +124,7 @@ data { font-variant-numeric: tabular-nums; font-weight: 500; color: var(--text);
 }
 
 /* ---------- columns ---------- */
-main { position: relative; z-index: 1; }
+main { position: relative; z-index: 1; background: var(--bg); }
 .container { max-width: calc(1032px + 2 * var(--gutter)); margin: 0 auto; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
 section { padding-block: 0 112px; scroll-margin-top: 96px; }
 section.container { position: relative; z-index: 1; }
@@ -150,7 +154,7 @@ section.container { position: relative; z-index: 1; }
 .about { margin: 6px 0 4px; max-width: 54ch; font-size: 17px; line-height: 1.5; letter-spacing: -0.005em; }
 .status { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; margin: 0 0 6px; font-family: var(--mono); font-size: 13px; line-height: 1.5; color: var(--on-photo-muted); }
 .status .clock { display: inline-flex; flex-wrap: wrap; gap: 0 8px; font-variant-numeric: tabular-nums; }
-.links { display: flex; flex-wrap: wrap; gap: 8px; }
+.links { display: flex; flex-wrap: wrap; gap: 8px; text-shadow: none; }
 .chip { height: 40px; padding: 0 16px; border-radius: 999px; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; min-width: 0; font-family: var(--mono); font-size: 13px; font-weight: 500; color: var(--text); transition: transform var(--d-hover) var(--ease); }
 .chip:hover { transform: translateY(-1px) scale(1.02); }
 .chip:active { transform: scale(0.97); }
