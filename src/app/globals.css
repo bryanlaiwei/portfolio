@@ -143,6 +143,9 @@ section.container { position: relative; z-index: 1; }
   -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 var(--mask-a), rgba(0,0,0,0.85) var(--mask-b), rgba(0,0,0,0.5) var(--mask-c), rgba(0,0,0,0.18) var(--mask-d), transparent 100%);
   mask-image: linear-gradient(180deg, #000 0%, #000 var(--mask-a), rgba(0,0,0,0.85) var(--mask-b), rgba(0,0,0,0.5) var(--mask-c), rgba(0,0,0,0.18) var(--mask-d), transparent 100%); }
 .scene .photo { position: absolute; inset: 0; background-size: cover; background-position: center 45%; transition: opacity 700ms var(--ease); filter: var(--photo-filter); }
+/* when the circular reveal does the theme change, the photos swap at once: a crossfade still running after the reveal
+   ends would briefly show the old photo again (seen in Safari and on iOS) */
+html[data-theme-switching] .scene .photo { transition: none; }
 .scene .day { background-image: url("/hero-day.jpg"); opacity: 0; }
 .scene .night { background-image: url("/hero-night.jpg"); opacity: 1; }
 :root[data-theme="light"] .scene .day { opacity: 1; } :root[data-theme="light"] .scene .night { opacity: 0; }
