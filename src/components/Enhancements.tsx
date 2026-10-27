@@ -85,28 +85,38 @@ export default function Enhancements() {
             } catch {}
             setTheme(next);
           };
-          // iOS and iPadOS browsers (all WebKit) draw the page under the status bar and the bottom toolbar, but a view
-          // transition only animates the area between them, so both bars turn into flat colour for the whole reveal.
-          // There the theme switches at once instead, with the hero photos crossfading as usual.
-          if (!document.startViewTransition || reduced || touchWebKit) {
+          if (reduced) {
             apply();
             return;
           }
-          const r = btn.getBoundingClientRect();
-          const x = r.left + r.width / 2;
-          const y = r.top + r.height / 2;
-          const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+          // The hero photos swap at once while a fade does the switch; their own crossfade would otherwise still be
+          // running when the fade ends and the old photo would flash back.
           root.dataset.themeSwitching = "";
-          const vt = document.startViewTransition(apply);
-          vt.finished.finally(() => delete root.dataset.themeSwitching);
-          vt.ready
-            .then(() =>
-              root.animate(
-                { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
-                { duration: 520, easing: "cubic-bezier(.2,.8,.2,1)", pseudoElement: "::view-transition-new(root)" },
-              ),
-            )
-            .catch(() => {});
+          const done = () => delete root.dataset.themeSwitching;
+          // Desktop: a view transition crossfades the old page into the new one (timing in globals.css).
+          // iOS and iPadOS browsers (all WebKit) draw the page under the status bar and the bottom toolbar, but a view
+          // transition only animates the area between them, so both bars would turn flat for the whole fade. There, and
+          // where view transitions are missing, a veil in the new theme's ground colour rises, the theme flips under it,
+          // and it falls away again: one opacity layer, so it stays smooth on phones and covers the bars too.
+          if (document.startViewTransition && !touchWebKit) {
+            document.startViewTransition(apply).finished.finally(done);
+            return;
+          }
+          const veil = document.createElement("div");
+          veil.className = "theme-veil";
+          veil.style.background = next === "light" ? "#f5f5f7" : "#000000";
+          document.body.appendChild(veil);
+          const rise = veil.animate({ opacity: [0, 0.9] }, { duration: 170, easing: "cubic-bezier(.4,0,1,1)", fill: "forwards" });
+          rise.finished
+            .then(() => {
+              apply();
+              return veil.animate({ opacity: [0.9, 0] }, { duration: 340, easing: "cubic-bezier(0,0,.2,1)", fill: "forwards" }).finished;
+            })
+            .catch(() => apply())
+            .finally(() => {
+              veil.remove();
+              done();
+            });
         },
         { signal },
       ),
