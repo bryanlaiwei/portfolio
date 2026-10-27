@@ -70,7 +70,9 @@ data { font-variant-numeric: tabular-nums; font-weight: 500; color: var(--text);
 /* theme switch: a soft crossfade of the whole page (desktop, via a view transition) or a veil that rises and falls in
    the new theme's ground colour (iOS, iPadOS, browsers without view transitions); see Enhancements.tsx */
 ::view-transition-group(root), ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 450ms; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
-.theme-veil { position: fixed; left: 0; right: 0; top: -120px; bottom: -120px; z-index: 2147483647; pointer-events: none; opacity: 0; }
+/* the veil is placed over the visible part of the page rather than fixed: iOS Safari paints its status bar and toolbar
+   with the colour of any fixed element touching the screen edges, which flattened both bars for a moment */
+.theme-veil { position: absolute; left: 0; right: 0; z-index: 2147483647; pointer-events: none; opacity: 0; }
 
 /* ---------- the material ---------- */
 .glass { position: relative; isolation: isolate; border-radius: 999px; }

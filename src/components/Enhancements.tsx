@@ -105,6 +105,11 @@ export default function Enhancements() {
           const veil = document.createElement("div");
           veil.className = "theme-veil";
           veil.style.background = next === "light" ? "#f5f5f7" : "#000000";
+          // cover the screen plus the strips under the status bar and toolbar, wherever the page is scrolled
+          // (never past the end of the document, which would make the page taller for a moment)
+          const veilTop = scrollY - 160;
+          veil.style.top = `${veilTop}px`;
+          veil.style.height = `${Math.min(innerHeight + 320, root.scrollHeight - veilTop)}px`;
           document.body.appendChild(veil);
           const rise = veil.animate({ opacity: [0, 0.9] }, { duration: 170, easing: "cubic-bezier(.4,0,1,1)", fill: "forwards" });
           rise.finished
