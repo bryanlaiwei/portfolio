@@ -247,12 +247,21 @@ export default function Enhancements() {
       if (!signal.aborted) paintActive(true);
     });
     let scrolledState: boolean | null = null;
+    let atHeroState: boolean | null = null;
+    const hero = $(".hero");
     const onScroll = () => {
       const s = scrollY > 40;
       if (s !== scrolledState) {
         scrolledState = s;
         if (s) root.dataset.scrolled = "";
         else delete root.dataset.scrolled;
+      }
+      // while the photo still meets the top of the screen, iOS Safari's status bar takes the photo's colour
+      const h = scrollY < (hero ? hero.offsetHeight : innerHeight) * 0.75;
+      if (h !== atHeroState) {
+        atHeroState = h;
+        if (h) root.dataset.atHero = "";
+        else delete root.dataset.atHero;
       }
       syncActive();
     };
