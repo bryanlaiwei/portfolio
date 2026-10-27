@@ -73,50 +73,122 @@ export default function Enhancements() {
         if (!override && !systemReadable()) setTheme(autoTheme());
       }, 60000),
     );
+    const apply = (next: string) => {
+      override = next;
+      try {
+        sessionStorage.setItem("theme", next);
+      } catch {}
+      setTheme(next);
+    };
+    const other = () => (isLight() ? "dark" : "light");
+    const afterFrames = (n: number) =>
+      new Promise<void>((resolve) => {
+        const step = () => (--n > 0 ? requestAnimationFrame(step) : resolve());
+        requestAnimationFrame(step);
+      });
+    // A newer switch takes over the switching flag, and in Safari the lifted glass, from one still running.
+    let switchId = 0;
+    let lifted: HTMLElement[] = [];
+    let veiling: Promise<void> = Promise.resolve();
+    const unlift = () => {
+      lifted.forEach((el) => {
+        el.classList.remove("lifted");
+        el.style.removeProperty("view-transition-name");
+        el.style.removeProperty("view-transition-class");
+      });
+      lifted = [];
+    };
     $$("[data-theme-toggle]").forEach((btn) =>
       btn.addEventListener(
         "click",
         () => {
-          const next = isLight() ? "dark" : "light";
-          const apply = () => {
-            override = next;
-            try {
-              sessionStorage.setItem("theme", next);
-            } catch {}
-            setTheme(next);
-          };
           if (reduced) {
-            apply();
+            apply(other());
             return;
           }
           // The hero photos swap at once while a fade does the switch; their own crossfade would otherwise still be
           // running when the fade ends and the old photo would flash back.
           root.dataset.themeSwitching = "";
-          const done = () => delete root.dataset.themeSwitching;
-          // Desktop: a view transition crossfades the old page into the new one (timing in globals.css).
+          const id = ++switchId;
+          const done = () => {
+            if (id === switchId) delete root.dataset.themeSwitching;
+          };
+          // Desktop: a view transition crossfades the old page into the new one (timing in globals.css). Safari's
+          // snapshots drop backdrop-filter, so there the glass on screen is lifted out of the page snapshot and keeps a
+          // live blur through the crossfade.
+          if (document.startViewTransition && !touchWebKit) {
+            const next = other();
+            unlift();
+            if (/Apple/.test(navigator.vendor)) {
+              lifted = $$(".glass:not(.pill):not(.card):not(.contact-panel):not(.toast)").filter((el) => {
+                const r = el.getBoundingClientRect();
+                return r.width > 0 && r.bottom > 0 && r.top < innerHeight;
+              });
+              lifted.forEach((el, i) => {
+                el.classList.add("lifted");
+                el.style.setProperty("view-transition-name", `glass-${i}`);
+                el.style.setProperty("view-transition-class", el.classList.contains("panel") ? "glass-panel" : "glass");
+              });
+            }
+            document.startViewTransition(() => apply(next)).finished.finally(() => {
+              if (id !== switchId) return;
+              unlift();
+              done();
+            });
+            return;
+          }
           // iOS and iPadOS browsers (all WebKit) draw the page under the status bar and the bottom toolbar, but a view
           // transition only animates the area between them, so both bars would turn flat for the whole fade. There, and
           // where view transitions are missing, a veil in the new theme's ground colour rises, the theme flips under it,
-          // and it falls away again: one opacity layer, so it stays smooth on phones and covers the bars too.
-          if (document.startViewTransition && !touchWebKit) {
-            document.startViewTransition(apply).finished.finally(done);
-            return;
-          }
-          const veil = document.createElement("div");
-          veil.className = "theme-veil";
-          veil.style.background = next === "light" ? "#f5f5f7" : "#000000";
-          document.body.appendChild(veil);
-          const rise = veil.animate({ opacity: [0, 0.9] }, { duration: 170, easing: "cubic-bezier(.4,0,1,1)", fill: "forwards" });
-          rise.finished
-            .then(() => {
-              apply();
-              return veil.animate({ opacity: [0.9, 0] }, { duration: 340, easing: "cubic-bezier(0,0,.2,1)", fill: "forwards" }).finished;
+          // and it falls away again. Safari tints the strip under the status bar with the body's background colour, so
+          // that colour fades in step with the veil. A second tap starts once the running switch has finished.
+          veiling = veiling
+            .then(async () => {
+              const next = other();
+              const ground = next === "light" ? [245, 245, 247] : [0, 0, 0];
+              const veilAt = (a: number) => `rgba(${ground.join(", ")}, ${a})`;
+              // colour c as it looks under the veil at strength a
+              const under = (c: string, a: number) =>
+                `rgb(${(c.match(/[\d.]+/g) ?? [])
+                  .slice(0, 3)
+                  .map((v, i) => Math.round(+v + (ground[i] - +v) * a))
+                  .join(", ")})`;
+              const body = document.body;
+              const page = $("main");
+              const veil = document.createElement("div");
+              veil.className = "theme-veil";
+              veil.style.height = `${page ? page.offsetTop + page.offsetHeight : root.scrollHeight}px`;
+              body.appendChild(veil);
+              // on its own layer the page is not repainted for every frame of the body colour
+              page?.style.setProperty("will-change", "transform");
+              const rise = { duration: 170, easing: "cubic-bezier(.4,0,1,1)", fill: "forwards" } as const;
+              const fall = { duration: 340, easing: "cubic-bezier(0,0,.2,1)", fill: "forwards" } as const;
+              let tint: Animation | undefined;
+              try {
+                // the veil and body colour run on the same clock, and each fade starts only after the heavy frame before
+                // it (the page's new layer, then the new theme) is on screen, so neither skips ahead
+                await afterFrames(2);
+                const from = getComputedStyle(body).backgroundColor;
+                tint = body.animate({ backgroundColor: [from, under(from, 0.9)] }, rise);
+                await veil.animate({ backgroundColor: [veilAt(0), veilAt(0.9)] }, rise).finished;
+                apply(next);
+                tint.cancel();
+                const to = getComputedStyle(body).backgroundColor;
+                body.style.backgroundColor = under(to, 0.9);
+                await afterFrames(2);
+                body.style.removeProperty("background-color");
+                tint = body.animate({ backgroundColor: [under(to, 0.9), to] }, fall);
+                await veil.animate({ backgroundColor: [veilAt(0.9), veilAt(0)] }, fall).finished;
+              } catch {
+                apply(next);
+              } finally {
+                tint?.cancel();
+                body.style.removeProperty("background-color");
+                page?.style.removeProperty("will-change");
+                veil.remove();
+              }
             })
-            .catch(() => apply())
-            .finally(() => {
-              veil.remove();
-              done();
-            });
+            .finally(done);
         },
         { signal },
       ),

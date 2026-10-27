@@ -69,8 +69,18 @@ svg { stroke-width: 2; }
 data { font-variant-numeric: tabular-nums; font-weight: 500; color: var(--text); }
 /* theme switch: a soft crossfade of the whole page (desktop, via a view transition) or a veil that rises and falls in
    the new theme's ground colour (iOS, iPadOS, browsers without view transitions); see Enhancements.tsx */
-::view-transition-group(root), ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 450ms; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
-.theme-veil { position: fixed; left: 0; right: 0; top: -120px; bottom: -120px; z-index: 2147483647; pointer-events: none; opacity: 0; }
+::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation-duration: 450ms; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+/* Safari's view transition snapshots drop backdrop-filter, so there the switch lifts the glass on screen out of the page
+   snapshot and each lifted pane blurs the crossfading page live. While lifted, a pane carries the blur itself rather
+   than on ::after: Safari would otherwise lose the blur on the frame the snapshot is taken, and keep it lost after. */
+::view-transition-group(*.glass) { border-radius: 999px; -webkit-backdrop-filter: blur(22px) saturate(170%); backdrop-filter: blur(22px) saturate(170%); }
+::view-transition-group(*.glass-panel) { border-radius: 26px; -webkit-backdrop-filter: blur(28px) saturate(170%); backdrop-filter: blur(28px) saturate(170%); }
+.glass.lifted { -webkit-backdrop-filter: blur(22px) saturate(170%); backdrop-filter: blur(22px) saturate(170%); }
+.glass.panel.lifted { -webkit-backdrop-filter: blur(28px) saturate(170%); backdrop-filter: blur(28px) saturate(170%); }
+.glass.lifted::after, .glass.panel.lifted::after { -webkit-backdrop-filter: none; backdrop-filter: none; }
+/* the veil is part of the page, not fixed: iOS Safari clips fixed layers to the space between its bars and paints both
+   bars flat in the fixed layer's colour */
+.theme-veil { position: absolute; left: 0; right: 0; top: 0; z-index: 2147483647; pointer-events: none; }
 
 /* ---------- the material ---------- */
 .glass { position: relative; isolation: isolate; border-radius: 999px; }
