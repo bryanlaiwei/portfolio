@@ -105,7 +105,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     title: "Suspeeches",
-    description: "Fake it till you make it, out loud! Join voice calls where AI characters can smell a larp from a mile away.",
+    description: "Fake it till you make it, out loud! Join conversations where AI characters can smell a larp from a mile away.",
     period: "Nov 2026",
     tech: [{ label: "TypeScript", slug: "typescript" }, { label: "React", slug: "react" }, { label: "Next.js", slug: "nextjs" }, { label: "PostgreSQL", slug: "postgresql" }, { label: "Supabase", slug: "supabase" }, { label: "Claude API", slug: "claude-api" }, { label: "ElevenLabs", slug: "elevenlabs" }],
     github: "https://github.com/bryanlaiwei/Suspeeches",
