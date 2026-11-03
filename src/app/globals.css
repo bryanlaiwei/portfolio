@@ -12,7 +12,7 @@
   --glass-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.55), 0 1px 2px rgba(0, 0, 0, 0.3);
   --hero-top: #000000; --hero-fade: 140px;
   --poster-a: #2a2622; --poster-b: #161412; --poster-grid: rgba(255, 255, 255, 0.07); --poster-ink: #f5f5f7;
-  --sd-a: #4a1a14; --sd-b: #22100c; --ct-a: #3a3a3c; --ct-b: #1c1c1e;
+  --sd-a: #4a1a14; --sd-b: #22100c; --ct-a: #3a3a3c; --ct-b: #1c1c1e; --sp-a: #1d3d12; --sp-b: #0d1c08;
   --scrim: rgba(0, 0, 0, 0.66); --scrim-side: rgba(0, 0, 0, 0.5); --scrim-start: 30%; --scrim-full: 68%; --mask-a: 52%; --mask-b: 64%; --mask-c: 78%; --mask-d: 90%; --photo-filter: none; --on-photo-muted: rgba(245, 245, 247, 0.78);
   --font: var(--font-inter), "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
   --font-display: var(--font-inter-tight), "Inter Tight", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", system-ui, sans-serif;
@@ -35,7 +35,7 @@
     --glass-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.22), 0 1px 2px rgba(0, 0, 0, 0.06);
     --hero-top: #4a8ea3; --hero-fade: 180px;
     --poster-a: #ffffff; --poster-b: #e9e6e2; --poster-grid: rgba(29, 29, 31, 0.06); --poster-ink: #1d1d1f;
-  --sd-a: #fff3ea; --sd-b: #f6d9c9; --ct-a: #ffffff; --ct-b: #e3e3e8;
+  --sd-a: #fff3ea; --sd-b: #f6d9c9; --ct-a: #ffffff; --ct-b: #e3e3e8; --sp-a: #f3ffe8; --sp-b: #d4efbf;
     --scrim: rgba(245, 245, 247, 0.84); --scrim-side: rgba(245, 245, 247, 0.22); --scrim-start: 50%; --scrim-full: 82%; --mask-a: 60%; --mask-b: 72%; --mask-c: 84%; --mask-d: 94%; --photo-filter: saturate(1.08) contrast(1.04); --on-photo-muted: rgba(29, 29, 31, 0.72);
     color-scheme: light;
   }
@@ -51,7 +51,7 @@
   --glass-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.22), 0 1px 2px rgba(0, 0, 0, 0.06);
   --hero-top: #4a8ea3; --hero-fade: 180px;
   --poster-a: #ffffff; --poster-b: #e9e6e2; --poster-grid: rgba(29, 29, 31, 0.06); --poster-ink: #1d1d1f;
-  --sd-a: #fff3ea; --sd-b: #f6d9c9; --ct-a: #ffffff; --ct-b: #e3e3e8;
+  --sd-a: #fff3ea; --sd-b: #f6d9c9; --ct-a: #ffffff; --ct-b: #e3e3e8; --sp-a: #f3ffe8; --sp-b: #d4efbf;
   --scrim: rgba(245, 245, 247, 0.84); --scrim-side: rgba(245, 245, 247, 0.22); --scrim-start: 50%; --scrim-full: 82%; --mask-a: 60%; --mask-b: 72%; --mask-c: 84%; --mask-d: 94%; --photo-filter: saturate(1.08) contrast(1.04); --on-photo-muted: rgba(29, 29, 31, 0.72);
   color-scheme: light;
 }
@@ -254,6 +254,7 @@ dialog.detail { overflow: visible; max-height: none; }
 .poster.mark { display: grid; place-items: center; padding-bottom: 50px; }
 .poster.mark img, .poster.mark svg { width: 26%; height: auto; aspect-ratio: 1; display: block; filter: drop-shadow(0 14px 28px rgba(0,0,0,0.22)); }
 .poster.sd { background: radial-gradient(120% 90% at 50% 30%, var(--sd-a), var(--sd-b)); }
+.poster.sp { background: radial-gradient(120% 90% at 50% 30%, var(--sp-a), var(--sp-b)); }
 .poster.ct { background: radial-gradient(120% 90% at 50% 30%, var(--ct-a), var(--ct-b)); }
 .actions { position: absolute; left: 12px; bottom: 12px; z-index: 2; height: 38px; padding: 0 4px; display: flex; align-items: center; gap: 2px; }
 .actions a { position: relative; z-index: 1; height: 30px; padding: 0 11px; border-radius: 999px; display: inline-flex; align-items: center; gap: 4px; text-decoration: none; font-size: 13px; font-weight: 500; color: var(--text); transition: transform var(--d-hover) var(--ease); }

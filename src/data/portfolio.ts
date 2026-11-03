@@ -87,7 +87,7 @@ export type Tag = { label: string; slug: string };
 
 export type ProjectCover =
   | { kind: "shot"; src: string; alt: string }
-  | { kind: "mark"; ground: "stickdrift"; src: string; alt: string }
+  | { kind: "mark"; ground: "stickdrift" | "suspeeches"; src: string; alt: string }
   | { kind: "mark"; ground: "contour" };
 
 export type Project = {
@@ -103,6 +103,15 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    title: "Suspeeches",
+    description: "Fake it till you make it, out loud! Join conversations where AI characters can smell a larp from a mile away.",
+    period: "Nov 2026",
+    tech: [{ label: "TypeScript", slug: "typescript" }, { label: "React", slug: "react" }, { label: "Next.js", slug: "nextjs" }, { label: "PostgreSQL", slug: "postgresql" }, { label: "Supabase", slug: "supabase" }, { label: "Claude API", slug: "claude-api" }, { label: "ElevenLabs", slug: "elevenlabs" }],
+    github: "https://github.com/bryanlaiwei/Suspeeches",
+    live: "https://suspeeches.vercel.app",
+    cover: { kind: "mark", ground: "suspeeches", src: "/projects/suspeeches-mark.svg", alt: "Suspeeches logo" },
+  },
   {
     title: "StickDrift",
     description: "Short, simple controller games designed for seniors that use an ML model to flag early signs of movement disorders.",

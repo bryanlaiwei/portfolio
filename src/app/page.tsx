@@ -152,9 +152,9 @@ function ProjectCover({ project }: { project: Project }) {
       </div>
     );
   }
-  if (cover.ground === "stickdrift") {
+  if (cover.ground !== "contour") {
     return (
-      <div className="poster mark sd">
+      <div className={`poster mark ${cover.ground === "stickdrift" ? "sd" : "sp"}`}>
         <img src={cover.src} alt={cover.alt} />
       </div>
     );
