@@ -37,7 +37,7 @@ export const experiences: Experience[] = [
     highlights: [
       "Engineered a test data generation engine that writes customizable data into SQL files or Microsoft Fabric tables, cutting generation time for 1 million rows from 20s to 7s with multithreading",
     ],
-    tech: ["SQL", "Microsoft Fabric", "Multithreading"],
+    tech: ["TypeScript", "Node.js", "Worker Threads", "Azure OpenAI", "Microsoft Fabric"],
     logo: "/logos/wsib.jpg",
     logoAlt: "Workplace Safety and Insurance Board logo",
   },
@@ -50,7 +50,7 @@ export const experiences: Experience[] = [
       "Engineered a gesture intensity scoring module that rates how much effort goes into any hand gesture on a universal 0–1 scale, achieving ≥90% ranking accuracy across effort levels by combining joint speed, snap, and move time",
       "Developed a few-shot Siamese network that recognizes similar hand gestures based on 1–3 example clips with up to 98% accuracy, using PyTorch triplet loss and exporting to ONNX for Unity",
     ],
-    tech: ["PyTorch", "ONNX", "Unity"],
+    tech: ["Python", "PyTorch", "Machine Learning", "ONNX", "Unity"],
     logo: "/logos/wrl.jpg",
     logoAlt: "Waterloo Reality Labs logo",
   },
