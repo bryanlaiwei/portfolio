@@ -37,7 +37,7 @@ export const experiences: Experience[] = [
     highlights: [
       "Engineered a test data generation engine that writes customizable data into SQL files or Microsoft Fabric tables, cutting generation time for 1 million rows from 20s to 7s with multithreading",
     ],
-    tech: ["TypeScript", "Node.js", "Worker Threads", "Azure OpenAI", "Microsoft Fabric"],
+    tech: ["TypeScript", "Node.js", "Multithreading", "Azure", "Microsoft Fabric"],
     logo: "/logos/wsib.jpg",
     logoAlt: "Workplace Safety and Insurance Board logo",
   },
