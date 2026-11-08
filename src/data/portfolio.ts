@@ -36,7 +36,7 @@ export const experiences: Experience[] = [
     period: "Sep 2026 – Present",
     highlights: [
       "Engineered a multithreaded synthetic test-data engine that writes schema-configurable datasets to SQL files and Microsoft Fabric tables, cutting 1M-row generation time by 65% (20s → 7s)",
-      "Engineered a indoor wayfinding app helping 3,500+ employees across 8 offices learn their workspaces during RTO, using QR-anchored positioning and Dijkstra routing over multi-floor maps",
+      "Built an indoor wayfinding app helping 3,500+ employees across 8 offices learn their workspaces during RTO, using QR-anchored positioning and Dijkstra routing over multi-floor maps",
     ],
     tech: ["TypeScript", "Node.js", "Multithreading", "Azure", "Microsoft Fabric"],
     logo: "/logos/wsib.jpg",
@@ -49,7 +49,7 @@ export const experiences: Experience[] = [
     period: "Sep 2026 – Present",
     highlights: [
       "Developed a few-shot Siamese network using PyTorch triplet loss that recognizes new hand gestures from only 1–3 reference clips at up to 98% accuracy, deployed via ONNX for in-engine inference in Unity",
-      "Engineered a gesture intensity scoring module that rates hand-gesture effort on a normalized 0–1 scale from kinematic features (joint velocity, snap, movement time), achieving ≥90% ranking accuracy across effort levels",
+      "Designed a gesture intensity scoring module that rates hand-gesture effort on a normalized 0–1 scale from kinematic features (joint velocity, snap, movement time), achieving ≥90% ranking accuracy across effort levels",
     ],
     tech: ["Python", "PyTorch", "Machine Learning", "ONNX", "Unity"],
     logo: "/logos/wrl.jpg",
@@ -62,8 +62,8 @@ export const experiences: Experience[] = [
     period: "May 2026 – Aug 2026",
     highlights: [
       "Built core features for Traces, a developer platform used by 100+ organizations to capture, share, and continue AI coding-agent sessions across tools and teams",
-      "Built data ingestion adapters for 14+ coding agents, handling local session discovery, content parsing, and schema normalization across JSONL files, SQLite databases, and cloud-backed session stores",
-      "Built a subagent discovery pipeline that infers parent–child relationships for 8+ agents with 97% accuracy, preserving lineage across local indexing, API surfaces, remote sync, and Convex storage",
+      "Implemented data ingestion adapters for 14+ coding agents, handling local session discovery, content parsing, and schema normalization across JSONL files, SQLite databases, and cloud-backed session stores",
+      "Engineered a subagent discovery pipeline that infers parent–child relationships for 8+ agents with 97% accuracy, preserving lineage across local indexing, API surfaces, remote sync, and Convex storage",
       "Developed token usage tracking for 8+ agents at 99% accuracy, mapping agent-specific per-API-call and session-level usage into shared TypeScript schemas, with CLI sync and persistence in Convex and Tinybird",
       "Designed a provider-neutral cloud agent session capture engine spanning polling, webhook, and streaming interfaces, with concurrent job processing and idempotent, retry-safe persistence",
     ],
