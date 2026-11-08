@@ -36,7 +36,7 @@ export const experiences: Experience[] = [
     period: "Sep 2026 – Present",
     highlights: [
       "Engineered a multithreaded synthetic test-data engine that writes schema-configurable datasets to SQL files and Microsoft Fabric tables, cutting 1M-row generation time by 65% (20s → 7s)",
-      "Engineered an indoor wayfinding app helping 3,500+ employees across 8 offices learn their workspaces during RTO, using QR-anchored positioning and Dijkstra routing over multi-floor maps",
+      "Engineered a indoor wayfinding app helping 3,500+ employees across 8 offices learn their workspaces during RTO, using QR-anchored positioning and Dijkstra routing over multi-floor maps",
     ],
     tech: ["TypeScript", "Node.js", "Multithreading", "Azure", "Microsoft Fabric"],
     logo: "/logos/wsib.jpg",
